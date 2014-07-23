@@ -50,6 +50,12 @@ describe("--", function() {
       }, "Boom!");
     });
 
+    it("throws if the step is not found", function() {
+      assert.throws(function() {
+        fe.step("I don't exist");
+      }, "Step: `I don't exist` is not a defined step.");
+    });
+
     it("can pass in arguments", function() {
       fe.steps("assert 1 equals 1", function(val) {
         assert.equal(val, 1);

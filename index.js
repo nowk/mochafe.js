@@ -128,6 +128,10 @@ Mochafe.prototype.step = function(name) {
     test = name;
   } else {
     var step = findStep(name, this.catalog);
+    if (!step) {
+      throw new StepDefinitionError("Step: `"+name+"` is not a defined step.");
+    }
+
     var fn = step.fn;
     var async = step.async;
     var args = Array.prototype.slice.call(arguments, 1);
