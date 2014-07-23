@@ -24,7 +24,6 @@
   "homepage": "https://github.com/nowk/mochafe.js",
   "devDependencies": {
     "chai": "^1.9.1",
-    "kare": "0.0.1",
     "mocha": "^1.20.1"
   }
 }
