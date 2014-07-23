@@ -104,6 +104,32 @@ describe("--", function() {
         done();
       });
     });
+
+    it("alternative async invocation (primarily for export use)", function(done) {
+      var start = Date.now();
+      var stop;
+
+      fe.steps("will takes some time", [true, function(a, b, c, next) {
+        setTimeout(function() {
+          assert.equal(a, "A");
+          assert.equal(b, "B");
+          assert.equal(c, "C");
+          stop = Date.now();
+          next();
+        }, 1000);
+      }]);
+
+      fe.steps("has taken at least about a second", function() {
+        assert(stop-start > 999);
+      });
+
+      fe.step("will takes some time", "A", "B", "C");
+      fe.step("has taken at least about a second");
+      fe.step(function() {
+        assert(!fe.running);
+        done();
+      });
+    });
   });
 
   it("can be passed steps to loaded during initialization", function() {

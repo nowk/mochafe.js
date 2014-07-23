@@ -100,6 +100,20 @@ Mochafe.prototype.steps = function(async, name, fn) {
     async = false;
   }
 
+  // handle alternative async api for use in exports
+  //
+  //    exports.asyncs = {
+  //      "takes some time": [true, function(next) {
+  //        //
+  //      }],
+  //      ...
+  //    }
+  //
+  if (fn instanceof Array) {
+    async = fn[0];
+    fn = fn[1];
+  }
+
   var step = findStep(name, this.catalog);
   if (step) {
     throw new StepDefinitionError("Step: `"+name+"` is already defined.");

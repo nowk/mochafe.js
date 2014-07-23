@@ -72,9 +72,9 @@ Steps can be saved in "global" export files and imported as required.
       "I will use this step alot": function(a, b) {
         assert.equal(a, b);
       },
-      "This one also": function(a, b) {
+      "This one is async": [true, function(a, b) {
         assert(a > b);
-      }
+      }]
     }
 
     var globalSteps = require("./global_steps");
