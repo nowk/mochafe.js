@@ -71,7 +71,7 @@ function importSteps(steps) {
 }
 
 /*
- * reset clears the step catalog
+ * reset resets
  *
  * @api public
  */
@@ -84,7 +84,7 @@ Mochafe.prototype.reset = function() {
 
 
 /*
- * steps stores functions by name to an key/value catalog
+ * steps stores functions by name to an object
  *
  * @param {Bool} async
  * @param {String} name
@@ -115,7 +115,7 @@ Mochafe.prototype.steps = function(async, name, fn) {
 };
 
 /*
- * step executs stored functions
+ * step queues steps for execution
  *
  * @param {String} name
  * @api public
@@ -146,7 +146,7 @@ Mochafe.prototype.step = function(name) {
 };
 
 /*
- * testfn is factory to build test for execution and handle asyncness
+ * testfn is a factory to build test for execution and handle asyncness
  *
  * @param {Function} fn
  * @param {Array} args
