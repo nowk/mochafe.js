@@ -125,7 +125,7 @@ Mochafe.prototype.step = function(name) {
   var test;
 
   if ("function" === typeof name) {
-    test = name;
+    test = testfn.bind(this, name, [], run.bind(this), false);
   } else {
     var step = findStep(name, this.catalog);
     if (!step) {
@@ -135,7 +135,7 @@ Mochafe.prototype.step = function(name) {
     var fn = step.fn;
     var async = step.async;
     var args = Array.prototype.slice.call(arguments, 1);
-    test = testfn(fn, args, run.bind(this), async);
+    test = testfn.bind(this, fn, args, run.bind(this), async);
   }
 
   this.sprint.push(test);
@@ -157,17 +157,19 @@ Mochafe.prototype.step = function(name) {
  */
 
 function testfn(fn, args, run, async) {
-  return function() {
-    if (async) {
-      args.push(run);
-    }
+  var self = this;
 
-    fn.apply(null, args);
+  if (async) {
+    args.push(run);
+  } else {
+    self.running = false;
+  }
 
-    if (!async) {
-      run();
-    }
-  };
+  fn.apply(null, args);
+
+  if (!async) {
+    run();
+  }
 }
 
 /*

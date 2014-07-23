@@ -76,6 +76,7 @@ describe("--", function() {
 
       fe.step("this happens first");
       fe.step("then this happens");
+      assert(!fe.running);
     });
 
     it("handles aysnc steps", function(done) {
@@ -98,7 +99,10 @@ describe("--", function() {
 
       fe.step("will takes some time", "A", "B", "C");
       fe.step("has taken at least about a second");
-      fe.step(done);
+      fe.step(function() {
+        assert(!fe.running);
+        done();
+      });
     });
   });
 
