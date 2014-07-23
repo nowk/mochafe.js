@@ -195,7 +195,7 @@ function findStep(name, steps) {
   var i = 0;
   var len = steps.length;
   for (; i<len; i++) {
-    step = steps[i];
+    var step = steps[i];
     if (name === step.name) {
       return step;
     }
