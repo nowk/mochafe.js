@@ -1,0 +1,30 @@
+{
+  "name": "mochafe",
+  "version": "0.0.0",
+  "description": "Steps for Mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nowk/mochafe.js.git"
+  },
+  "keywords": [
+    "steps",
+    "features",
+    "acceptance",
+    "mocha"
+  ],
+  "author": "Yung Hwa Kwon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nowk/mochafe.js/issues"
+  },
+  "homepage": "https://github.com/nowk/mochafe.js",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "kare": "0.0.1",
+    "mocha": "^1.20.1"
+  }
+}
