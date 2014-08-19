@@ -15,7 +15,9 @@ module.exports = Mochafe;
  */
 
 function Mochafe(opts) {
-  this.reset();
+  this.catalog = [];
+  this.sprint = [];
+  this.running = false;
 
   opts = opts || {};
   this.loadSteps(opts.steps);
