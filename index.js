@@ -7,14 +7,6 @@
 module.exports = Mochafe;
 
 /*
- * defaults
- */
-
-Mochafe.prototype.catalog = [];
-Mochafe.prototype.sprint = [];
-Mochafe.prototype.running = false;
-
-/*
  * mochafe
  *
  * @param {Object} opts
