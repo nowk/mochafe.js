@@ -1,6 +1,6 @@
 {
   "name": "mochafe",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Steps for Mocha",
   "main": "index.js",
   "scripts": {
