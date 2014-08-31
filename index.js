@@ -165,12 +165,8 @@ Mochafe.prototype.step = function(name) {
  */
 
 function testfn(fn, args, run, async) {
-  var self = this;
-
   if (async) {
     args.push(run);
-  } else {
-    self.running = false;
   }
 
   fn.apply(null, args);

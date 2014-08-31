@@ -100,7 +100,6 @@ describe("--", function() {
       fe.step("will takes some time", "A", "B", "C");
       fe.step("has taken at least about a second");
       fe.step(function() {
-        assert(!fe.running);
         done();
       });
     });
@@ -126,7 +125,6 @@ describe("--", function() {
       fe.step("will takes some time", "A", "B", "C");
       fe.step("has taken at least about a second");
       fe.step(function() {
-        assert(!fe.running);
         done();
       });
     });
@@ -157,5 +155,37 @@ describe("--", function() {
       fe.step("and another");
     }, "Boom!");
     fe.step("local step", 2, 1);
+  });
+
+  describe("beforeEach step(done)", function() {
+    var fe = new Mochafe();
+    beforeEach(function(done) {
+      fe.step(done);
+    });
+
+    it("does not break async", function(done) {
+      var start = Date.now();
+      var stop;
+
+      fe.steps(true, "will takes some time", function(a, b, c, next) {
+        setTimeout(function() {
+          assert.equal(a, "A");
+          assert.equal(b, "B");
+          assert.equal(c, "C");
+          stop = Date.now();
+          next();
+        }, 1000);
+      });
+
+      fe.steps("has taken at least about a second", function() {
+        assert(stop-start > 999);
+      });
+
+      fe.step("will takes some time", "A", "B", "C");
+      fe.step("has taken at least about a second");
+      fe.step(function() {
+        done();
+      });
+    });
   });
 });
